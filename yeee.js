@@ -1,43 +1,40 @@
-class Ball{
-	constructor(º,ª,sz,b){
-		this.p={
-			º: º,
-			ª: ª,
+class ${
+	constructor(pos, speed, size, boundary, color){
+		this.º={
+			á: pos.x,
+			à: speed.x,
+			â: 0,
 		}
-		this.v={
-			º: 5,
-			ª: 5,
+		this.ª={
+			á: pos.y,
+			à: speed.y,
+			â: 100,
 		}
-		this.sz=sz;
-		this.b=b
+		this.size=size;
+		this.ï=boundary;
+		this.î=color;
 	}
-	update(table){
-//		console.log(this.table.º);
-		this.p.º+=this.v.º;
-		this.p.ª+=this.v.ª;
-		if(this.p.º<this.b.l || this.b.r<this.p.º ||
-			table.ª<this.p.ª && this.p.ª<table.h+table.ª && table.º<this.p.º && this.p.º<table.º+table.w
-		   )this.v.º*=-1;
+	update(){
+		if(this.ª.á>=this.ï.b){
+			this.º.à*=0.1;
+//			if(this.ª.à<)
+			this.ª.à*=-0.99;
+			this.ª.á=this.ï.b;
+		}
 
-		if(this.p.ª<this.b.t || this.b.b<this.p.ª ||
-			table.º<this.p.º && this.p.º<table.w+table.º && table.ª<this.p.ª && this.p.ª<table.ª+table.h
-			)this.v.ª*=-1;
+		this.º.á+=this.º.à * deltaTime / 1000;
+		this.º.à+=this.º.â * deltaTime / 1000;
+
+		this.ª.á+=this.ª.à * deltaTime / 1000;
+		this.ª.à+=this.ª.â * deltaTime / 1000;
+
+		if(this.º.á>this.ï.r)		this.º.á-=this.ï.r+1;
+		else if(this.º.á<this.ï.l)	this.º.á+=this.ï.r-this.ï.l+1;
+		
 	}
 	draw(){
-		circle(this.p.º, this.p.ª,this.sz);
-	}
-}
-class Table{
-	constructor(ª,width,height){
-		this.ª=ª;
-		this.º=0;
-		this.w=width;
-		this.h=height;
-	}
-	move(º){
-		this.º=º;
-	}
-	draw(){
-		rect(this.º,this.ª,this.w,this.h);
+//		console.log(this.º.á, this.ª.á);
+		fill(this.î);
+		circle(this.º.á, this.ª.á, this.size);
 	}
 }

@@ -1,5 +1,48 @@
 //https://rudy-digipen.github.io/p5.js-workshop/
-let ñ=
+var w,h;
+let img;
+function preload(){
+	img=loadImage('https://i.iheart.com/v3/catalog/artist/432004?ops=fit(720%2C720)');
+}
+function setup()
+{
+	//createCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
+	createCanvas( w=window.innerWidth-1,h=window.innerHeight-1);
+	textFont('Consolas');
+	textAlign(LEFT, TOP);
+	textSize(2);
+//	image(img, 0, 0, 2016, 1528);
+	cursor("wait")
+	ä=[];
+}
+
+function keyPressed(){
+	mousePressed();
+}
+function mousePressed(){
+	var $$$=color(random(0,255), random(0,255),random(0,255));
+	for(let $$=32;$$;$$--)ä.push(new $(
+		{x: mouseX, y:mouseY},
+		{x: random(-128,128), y: random(-300,50)},
+		random(1,64),
+		{l: 0, t: 0, r: w, b: h,},
+		$$$
+	))
+}
+
+function draw()
+{
+	if(w!=window.innerWidth-1 || h!=window.innerHeight-1){resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);}
+
+	background('#000000');
+	fill('#ff0000');
+
+	for($$=ä.length-1; $$+1; $$--){
+		ä[$$].update();
+		ä[$$].draw();
+	}
+}	
+var ñ=
 `##B##################BBBBBBBBBBBBBBBBBB###BPPGGBBB##BGPG55GGYY5?JPGBBBYJY5YPPGG5J?JYPPGP5YYYJP5??YJ5PGP77??JJJ7JG5GP7YB5J??5#G!!?7YBBBBBGGB5??J!!~~^!!7?777!7JJ~?Y5PPPPGGGGGGGGGJ?!!5PPPPPJJPGGGG5PBBGPYJ7!7?77?557?7J5YJ???777???YY??J777?J????7?7755YY5YY7!??J!!7?Y55Y77???YGYG#G77?7!7?JJ?77??J?????????J??JJ?7?J???7?YY?777777??JJ??7?JY?7?JJY??JYJ!!7!7?7?!!????J?????YJY555PPGBBGGGGGBGGBGP5PP5PPGBBGGGGBB
 JYP555P555PPPPPGGPPPPPPP5Y555Y555PGGPPPGP5PGGBBGBGBBBGBGGGGBGGB5JPBBBBBBBB#BBBBBBGBBBBB##BBBBBBGGBBGGBPY5P5PGGY5GPGGGBGJ?Y5G#P~!77JGBGY??7??!~!7!~^~~!?!!??!7?5Y?5GGGGGG5YJ5GPPJ?7~?PGPP5PJ5PGGBP?PBBBBP57~!?7!JGG??YPBG7!??77?J77JJ7!77??7??J??77???J577?J?7!!?7!77JPGY?77?!755P#G7!?7!!?J????77J?7777?77??7777!7?77!!?YYJ7!?77?JY????J?JJ???7J?5Y?PGP7~77!7JJ7!77?7777777777??7?7?YJ777????JJ??7777?JJYYJJ??J5
 !!?J??!~!!JJ7?YJ777!~~!7?YJ!~!777J55777!7!!J5YJ??7!???YJJ?JJ77?JYY555PPPGGGGGP5PGBB##BBBB######B#####BBBB#BPPGBBBBBBB#BBBBGGBPJ?JJYPG5YJJ???7?!?Y7!?7?Y7?Y5PPPGGPPGGGGG5777JP5Y!!7JY5GGGG5YGBBGPJJPBBBBBP?~!J?7J5BBB##BG7~??77??!77777JJ?J77?J777??77?YY?J777!77777??JY7777!7YGBB#B7!??7!7??J?777??77?7777??777777?7???JY??77?77??777?JJJJ?YY5?JJYYYPGG?~77!777777??77777?J77?J?7?JJ??777??7?Y?777???77?PJ~7777?
@@ -189,38 +232,3 @@ JJG57YBY?P###P7JJ?JBB7?J?7!7J?P#GJ!??7GG?JPJ7?J?JJYYJ?JYJJ?JY?J7?7?JJJJJ5YJY?7J?
 YYBB?Y5?JG###P7?J?5BB??????JJ7YY77J?7YBBY7J???J??7JYJ7?555?!7???J??JJJY?7?JJY5?!JY5PYGP??77JGPJJ?7??????7?777J55Y5PP55P########&&&&&&&#&&########&###&&&&&&&&&&&&&&#BGBBBBBBBBBGGGGBBBBBBBBBGGGGB#&&&&&&&&#######&&&&&&&##BBBBB####&&&&&&&&&&&&&&&&&#&&&#BBBBB##&##5JYYJ5GPYYJJYYYPGB######B#B##&&&&#BBBBBBBBBBBBBBBBBBBBBBBBBBB#BBBBBBBB###############################################BB#######B##&&&#BBB####&
 YYB#J7YJ?G###P??J?YGP!7?7???7?7!YY7!?YPYYY7J?!JJ?JJJ77JYYJ7!7YPY?!?JJJJ?7JJJYY7?YGB5JG#J!7JPBPJJJ77?????77??7?Y55YY5PPPB########&&&&&&#&&&######&&###&&&&&&&&&&&&&&&##BBBBBBGGGGGGGGGGBBBBBBGGGGG#&&&&##########&&&&&&#BBGGBBB##&&&&&&&&&&&&&&&&&&&&&&&&##BBBBB###Y7?YJYGBBGGJ??JJYYPB#####B#####&&&##BBBBBBB#BBBBBBB###################################################BBBBBB##BBBBBBBBBBB######BB#&&&#BBB#####
 `;
-var w,h;
-let img;
-var table=new Table(900,100,20);
-var ball=new Ball(0,0,30,{l: 0, t: 0, r: window.innerWidth, b:window.innerHeight})
-function preload(){
-	img=loadImage('https://i.iheart.com/v3/catalog/artist/432004?ops=fit(720%2C720)');
-}
-function setup()
-{
-	//createCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
-	createCanvas( w=window.innerWidth-1,h=window.innerHeight-1);
-	textFont('Consolas');
-	textAlign(LEFT, TOP);
-	textSize(2);
-//	image(img, 0, 0, 2016, 1528);
-	cursor("wait")
-}
-function draw()
-{
-	if(w!=window.innerWidth-1 || h!=window.innerHeight-1){
-		resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
-	}
-	background('#ffffff');
-	fill('#ff0000');
-	ball.update(table);
-	ball.draw();
-//	table.move(mouseX);
-	if(keyIsDown(116)){
-		table.º+=5;
-	}else{
-		table.º-=5;
-	}
-	
-	table.draw();
-}	
