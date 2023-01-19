@@ -3,6 +3,7 @@ var w,h;
 let img;
 function preload(){
 	img=loadImage('https://i.iheart.com/v3/catalog/artist/432004?ops=fit(720%2C720)');
+//	soundFormats()
 }
 function setup()
 {
@@ -14,33 +15,36 @@ function setup()
 //	image(img, 0, 0, 2016, 1528);
 	cursor("wait")
 	ä=[];
+	$$$$=new $$();
 }
 
 function keyPressed(){
 	mousePressed();
 }
 function mousePressed(){
-	var $$$=color(random(0,255), random(0,255),random(0,255));
-	for(let $$=32;$$;$$--)ä.push(new $(
+	var LITLITLITLIT=color(random(0,255), random(0,255),random(0,255));
+	for(Ü=32;Ü;Ü--)ä.push(new $(
 		{x: mouseX, y:mouseY},
 		{x: random(-128,128), y: random(-300,50)},
 		random(1,64),
 		{l: 0, t: 0, r: w, b: h,},
-		$$$
+		LITLITLITLIT
 	))
 }
-
 function draw()
 {
 	if(w!=window.innerWidth-1 || h!=window.innerHeight-1){resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);}
 
 	background('#000000');
 	fill('#ff0000');
-
-	for($$=ä.length-1; $$+1; $$--){
-		ä[$$].update();
-		ä[$$].draw();
+	
+	for(Ü=ä.length-1; Ü+1; Ü--){
+		ä[Ü].update();
+		ä[Ü].draw();
 	}
+	$$$$.update(mouseX,mouseY,mouseIsPressed);
+	$$$$.draw();
+	
 }	
 var ñ=
 `##B##################BBBBBBBBBBBBBBBBBB###BPPGGBBB##BGPG55GGYY5?JPGBBBYJY5YPPGG5J?JYPPGP5YYYJP5??YJ5PGP77??JJJ7JG5GP7YB5J??5#G!!?7YBBBBBGGB5??J!!~~^!!7?777!7JJ~?Y5PPPPGGGGGGGGGJ?!!5PPPPPJJPGGGG5PBBGPYJ7!7?77?557?7J5YJ???777???YY??J777?J????7?7755YY5YY7!??J!!7?Y55Y77???YGYG#G77?7!7?JJ?77??J?????????J??JJ?7?J???7?YY?777777??JJ??7?JY?7?JJY??JYJ!!7!7?7?!!????J?????YJY555PPGBBGGGGGBGGBGP5PP5PPGBBGGGGBB
