@@ -191,58 +191,36 @@ YYB#J7YJ?G###P??J?YGP!7?7???7?7!YY7!?YPYYY7J?!JJ?JJJ77JYYJ7!7YPY?!?JJJJ?7JJJYY7?
 `;
 var w,h;
 let img;
+var table=new Table(900,100,20);
+var ball=new Ball(0,0,30,{l: 0, t: 0, r: window.innerWidth, b:window.innerHeight})
 function preload(){
 	img=loadImage('https://i.iheart.com/v3/catalog/artist/432004?ops=fit(720%2C720)');
 }
 function setup()
 {
 	//createCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
-	createCanvas( w=window.innerWidth,h=window.innerHeight);
+	createCanvas( w=window.innerWidth-1,h=window.innerHeight-1);
 	textFont('Consolas');
 	textAlign(LEFT, TOP);
 	textSize(2);
 //	image(img, 0, 0, 2016, 1528);
 	cursor("wait")
 }
-var á=0;
-var ä=0;
-var pressed=false;
-function keyPressed(){
-	pressed=true;
-}
-function keyReleased(){
-	pressed=false;
-}
-function õ(ó, ò, ô, ö, Ö){
-	translate(ó, ò);
-	beginShape();
-	for(o=0;o<ô;o++){
-		vertex(ö*cos($=o*2*PI/ô),ö*sin($));
-		vertex(Ö*cos($=o*2*PI/ô + PI/ô),Ö*sin($));
-	}
-	endShape(CLOSE);
-	circle(0,0,Ö<<1);
-	translate(0,0);
-}
-var e=[]
 function draw()
 {
 	if(w!=window.innerWidth-1 || h!=window.innerHeight-1){
 		resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
-		background('#ffffff');
-		for(asdf=0;asdf<20;asdf++)õ(e[asdf][0],e[asdf][1],random(8,12), random(100,200),random(20,40));
-		for(asdf=0;asdf<10;asdf++)console.log(e[asdf]=[Math.floor(random(0,w)),Math.floor(random(0,h))])
-		fill('#ff0000');
+	}
+	background('#ffffff');
+	fill('#ff0000');
+	ball.update(table);
+	ball.draw();
+//	table.move(mouseX);
+	if(keyIsDown(116)){
+		table.º+=5;
+	}else{
+		table.º-=5;
 	}
 	
-//	text(ñ,0,0);
-	//text(ñ,map((á=sin(ä*0.01))*á*á,0,1,300,w-300),0);
-	
-	
-/*	background( '#000000' );
-	ellipse(Math.random()*w, Math.random()*h, Math.random()*w,Math.random()*h);
-	line(Math.random()*w, Math.random()*h, Math.random()*w,Math.random()*h);
-	rect(Math.random()*w, Math.random()*h, Math.random()*w,Math.random()*h);
-	text("JKLá", Math.random()*w, Math.random()*h);*/
-	ä++;
-}
+	table.draw();
+}	
