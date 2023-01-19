@@ -2,6 +2,7 @@ function ñNop(){}
 
 var ñRunner, ñRunner_;
 var ñRunnerList=[]
+
 function ñInitRunnerList(){
 		ñRunnerList=[
 		{
@@ -13,6 +14,11 @@ function ñInitRunnerList(){
 			ñRunner			: ñScenePlayLevel,
 			ñInitializer	: ñScenePlayLevelInit,
 			ñEventHandler	: ñScenePlayLevelEvent,
+		},
+		{
+			ñRunner			: ñNop,
+			ñInitializer	: undefined,
+			ñEventHandler	: undefined,
 		},
 	]
 }
