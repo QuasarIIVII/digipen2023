@@ -182,7 +182,7 @@ JJ???????JYY?J?JJ???J???JYY5Y7JJ?5B#GY7JJ??YPPJY#####BP7??7?YY5PPGPY5GG5PPPB#B##
 ?J?Y?7???JYYJYYP5?77?J?JJJJ?YPGP5PBBBP7YPPJYGPY5B####BBGYJYPPBB#####BBGG555PPPPPPYYP5J?YYYYJ?J?7!!!!!7777?JYJJJJYPB#BBB#&###########&&##&&&###&&&&####BBBBBBBBBBBB################################BB##&&&&##&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&###BBB####&&&###G##BBBBBBGBGPB&&&&&&&&&#####&#############BBB#BBB#BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#&##BB########BB##BBBBBBBBBBBBBBBBBBBBBBBBBBBB
 JY77J7???YJ?J5GB?!JJ?J??YY?PB###BG####GBBBGPYPGGGBGGGPGPYY55JYYY55YYJJJJJJJ??JP5JPY77?Y5?!!~!???7!!!!7777?7???JJY5GBBBBB#&&#########&&&&&&&&####&&&##&##BBBBBB####################################B#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&######&&&&&&#####BBBBBGB##GP5B############&&#BBBBBBB######BBBBB###BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#BB#####B##BBB##BBB##BBBBBBBBBB#BBBBBBBBBBB#BBBBB
 JYJJJYYYY55PBB##GGBBGBBBBBB###BBBBBBGGGY?J5J7?J???JJJ???J?777?Y?!?Y5?!!7?YPP55BBBBGJ7?77!77J55?77!!!!!!!!7????JJYY5GB##BBB&#####&#&&&&&&&&&&##&&&&&&&&&&##BGBBB#B#################################B#&&&###&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&######&&&&#######5J555YG####GG#BBBBBBB####&##BBBBBB#####BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#####B###BBBB###B###BBBBBBBBBBBBBBBBBB###BBB##
-GB#BBB#########B#BBGGBBGPP5YJYJ?YY??5J7!!7?JY?7~~!?7?Y?7Y7!7!?5J7YYY77JY??PPG##GY??J5JYY?7?JJYJ77!!~!777!!7J?7JYYYYPB###BG#&####&&&&&&&&&&&&&&&&&&&&&&&&&&#BBBBB#################################BB##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&####&#&&#########PJJJYPGB#####BB##BBBB####&##BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB##B#B####BBB#BBB#B########BB##BBBBBBBBBBB##########
+GB#BBB#########B#BBGGBBGPP5YJYJ?YY??5J7!!7?JY?7~~!?7?Y?7Y7!7!?5J7YYY77JY??PPG##GòY??J5JYY?7?JJYJ77!!~!777!!7J?7JYYYYPB###BG#&####&&&&&&&&&&&&&&&&&&&&&&&&&&#BBBBB#################################BB##&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&####&#&&#########PJJJYPGB#####BB##BBBB####&##BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB##B#B####BBB#BBB#B########BB##BBBBBBBBBBB##########
 GGPP55YPGBGPP5YJ???Y5Y777JYJ7Y7~??!!???!~????7?7?JJ?Y5J?J?JJ?Y55Y??JJ?JY?7JPPP5Y???J?!??77??Y5Y!!!~~~???7!7JJ7?55YYYPB###BGB&#######&&&&&&&&&###&&&&&&&&&&&&#B###################################B#&#&&&&&&&&&&&&&&&&&&&&&&&&#&&#&&&&&&&&&&&&&&&&&&&&&&#BBBB##&&##&###&#BY?JJYPGBB####BBBB#BBB##&&&&#BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB##BB#####BBB######################################
 7YY!!JY?JGBBBY7J??JBP!7577?7YJ?JJYJ7JJY??JJY77?J?JJ?J5JJ??J?JYYJ77?J?????YYGJJJ7JPJ77J?7JJ55PGY7!~~~!7J?77!?Y??JPP5YJG####BG#######&&&#####&#####&&#&&&&&&&&&###############################&&##BG#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&###&&&&&&&&&&&&&&&&&&&##BBBBB#&#####BPYYJJJJJY5GBB#####BB###B##&&&&#BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB#BBBBBBBBB#############################&######&################
 JJG57YBY?P###P7JJ?JBB7?J?7!7J?P#GJ!??7GG?JPJ7?J?JJYYJ?JYJJ?JY?J7?7?JJJJJ5YJY?7J?JJJ?5GYYYYJY5PJ?77!!7?JJ?7!!?YYJYPPYJYB#####B#&#&##&&&###############&&&&&&&&&&&&&##BBB#######################BGG#&&&&&&&&&&&&&&&&&&&&&&&&&####B#####&&&&&&&&&&&&&&&&&&&#BBBBB##&###GYJJYYYJJJJJ5PG#####BBB##B##&&&&#BBBBBBBBBBBBBBBBBBBBBBB#BBBBBBBBBBBBBBBB####BBB#B#################&&############################&##########
@@ -196,11 +196,13 @@ function preload(){
 }
 function setup()
 {
-	createCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
+	//createCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
+	createCanvas( w=window.innerWidth,h=window.innerHeight);
 	textFont('Consolas');
 	textAlign(LEFT, TOP);
 	textSize(2);
 //	image(img, 0, 0, 2016, 1528);
+	cursor("wait")
 }
 var á=0;
 var ä=0;
@@ -211,34 +213,29 @@ function keyPressed(){
 function keyReleased(){
 	pressed=false;
 }
+function õ(ó, ò, ô, ö, Ö){
+	translate(ó, ò);
+	beginShape();
+	for(o=0;o<ô;o++){
+		vertex(ö*cos($=o*2*PI/ô),ö*sin($));
+		vertex(Ö*cos($=o*2*PI/ô + PI/ô),Ö*sin($));
+	}
+	endShape(CLOSE);
+	circle(0,0,Ö<<1);
+	translate(0,0);
+}
+var e=[]
 function draw()
 {
-	if(w!=window.innerWidth-1 || h!=window.innerHeight-1)resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
+	if(w!=window.innerWidth-1 || h!=window.innerHeight-1){
+		resizeCanvas( w=window.innerWidth-1, h=window.innerHeight-1);
+		background('#ffffff');
+		for(asdf=0;asdf<20;asdf++)õ(e[asdf][0],e[asdf][1],random(8,12), random(100,200),random(20,40));
+		for(asdf=0;asdf<10;asdf++)console.log(e[asdf]=[Math.floor(random(0,w)),Math.floor(random(0,h))])
+		fill('#ff0000');
+	}
 	
-	background('#ffffff');
-	line(w>>1, 0, w>>1, h);
-	line(0, h>>1, w, h>>1);
-	fill('#ff0000');
-	if(mouseX<w>>1){
-		if(mouseY<h>>1){
-			beginShape(LINES);
-			for(var à=0;à<4096;à++)vertex(cos(ã=(à*PI*2/4096))*128+128, sin(ã)*128+128);
-			endShape(CLOSE);
-		}
-		else text(ñ,0,h>>1);
-	}
-	else{
-		if(mouseY<h>>1){
-			beginShape();
-			for(var à=0;à<5;à++)vertex(cos(ã=(à*PI*2/5))*128+128+w>>1, sin(ã)*128+128);
-			endShape(CLOSE);
-		}
-		else{
-			beginShape(TESS);
-			for(var à=0;à<3;à++)vertex(cos(ã=(à*PI*2/3))*128+128+w>>1, sin(ã)*128+128+h>>1);
-			endShape(CLOSE);
-		}
-	}
+//	text(ñ,0,0);
 	//text(ñ,map((á=sin(ä*0.01))*á*á,0,1,300,w-300),0);
 	
 	
