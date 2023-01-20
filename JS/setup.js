@@ -22,7 +22,7 @@ function ñInitRunnerList(){
 		},
 		{
 			ñRunner			: ñSceneResult,
-			ñInitializer	: undefined,
+			ñInitializer	: ñSceneResultInit,
 			ñEventHandler	: undefined,
 		}
 	]
@@ -30,7 +30,8 @@ function ñInitRunnerList(){
 
 function preload(){
 	soundFormats('mp3');
-	ñS=loadSound('(1s - 2m 20s) 【Lanota】Viatores.mp3');
+	ñS=loadSound('Assets/a/audio.mp3');
+	ñOsu=loadStrings('Assets/a/Yanagida Ethnica - For You the Bellz Toll (Keiga) [Hard].osu');
 }
 function setup()
 {
@@ -39,5 +40,17 @@ function setup()
 //	cursor("wait")
 	ñRunner_=undefined;
 	ñRunner=ñRunnerList[0];		//ñSceneStart
-	console.log(width, height);
+//	console.log(width, height);
+	ñOsu.forEach(ç => {
+		ñTemp=ç.split(': ');
+		console.log(ñTemp);
+		switch(ñTemp[0]){
+			case "AudioFilename":{
+				console.log(ñTemp[1]);
+				break;
+			}
+		}
+		
+	})
+	console.log(ñIndexOfHitObjects= ñOsu.indexOf('[HitObjects]'));
 }

@@ -22,7 +22,7 @@ class ñChart{
 	}
 }
 
-var ñChartViatores = new ñChart("Viatores", "TQ", 144, 4, 2393, 15000, [
+var ñChartViatores = new ñChart("Viatores", "TQ", 144, 4, 0, 132000, [
 {ñMeasureNumber : 0x0000, ñBeatNumber : 0,	ñNoteType : ÑNormalNote, ñLine : 0, ñDuration : 0,},
 {ñMeasureNumber : 0x0000, ñBeatNumber : 0,	ñNoteType : ÑNormalNote, ñLine : 3, ñDuration : 0,},
 {ñMeasureNumber : 0x0000, ñBeatNumber : 1.5,ñNoteType : ÑNormalNote, ñLine : 1, ñDuration : 0,},

@@ -22,10 +22,14 @@ function ñScenePlayLevelInit(){
 	ñNoteList.push(new ñNote(4000, 1));
 	ñNoteList.push(new ñNote(4200, 0));
 	*/
-	for(var ç=0;ç<ñChartViatores.ñNoteList.length; ç++){
+	for(var ç=ñIndexOfHitObjects+1; ñOsu[ç]!=[]; ç++){
+		ñTemp=ñOsu[ç].split(',');
+		ñNoteList.push(new ñNote(parseInt(ñTemp[2]), floor(parseInt(ñTemp[0])*4/512)));
+	}
+/*	for(var ç=0;ç<ñChartViatores.ñNoteList.length; ç++){
 //		console.log("Reg : "+ñChartViatores.ñToMilliseconds(ç));
 		ñNoteList.push(new ñNote(ñChartViatores.ñToMilliseconds(ç), ñChartViatores.ñNoteList[ç].ñLine));
-	}
+	}*/
 	ñJudjementCount=[0,0,0,0,0,0];
 //	console.log(ñNoteList);
 	ñS.play();
@@ -78,6 +82,7 @@ function ñScenePlayLevel(){
 		(width>>1)-(ñField.ñWidth>>1) + ñField.ñWidth, (height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*5/6,
 	);
 	for(var ç=0;ç<ñNoteList.length;){
+//			if((height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*5/6 - ñBPM * ñScrollSpeed * (ñNoteList[ç].ñTime - ñRunTime + ñTimePlayBegin + ñVisualOffset) / 1000 - (ñNoteList[ç].ñHeight>>1) < -1000)continue;
 		console.log(ñKeyQueue[ñNoteList[ç].ñLine].length);
 		ñTemp=ñRunTime-ñTimePlayBegin-ñNoteList[ç].ñTime - ñJudjementOffset;
 		if(300<ñTemp){
@@ -159,7 +164,7 @@ function ñScenePlayLevel(){
 	}
 	fill('#000000');
 	textSize(24);
-	text(""+floor(100*
+	text(""+(isNaN(ñTemp=floor(100*
 		(ñJudjementCount[0]*100
 		+ñJudjementCount[1]*80
 		+ñJudjementCount[2]*60
@@ -170,7 +175,7 @@ function ñScenePlayLevel(){
 		+ñJudjementCount[2]
 		+ñJudjementCount[3]
 		+ñJudjementCount[4]
-		+ñJudjementCount[5]))/100
+		+ñJudjementCount[5]))/100)? 100 : ñTemp)
 		, width>>1, (height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*9/12);
 	for(var ç=0;ç<4;ç++){
 		if(keyIsDown(ñKeyBind[ç])){
@@ -178,6 +183,9 @@ function ñScenePlayLevel(){
 			rect((width>>1)-(ñField.ñWidth>>1) + (ç*ñField.ñWidth>>2), (height>>1)-(ñField.ñHeight>>1), 
 			ñField.ñWidth>>2, ñField.ñHeight);
 		}
+	}
+	if(ñChartViatores.ñDuration < ñRunTime-ñTimePlayBegin){
+		ñRunner=ñRunnerList[3];
 	}
 }
 
@@ -218,6 +226,24 @@ function ñScenePlayLevelEvent(ñMessage, ñParams, ñTime){
 	}
 }
 
+function ñSceneResultInit(){
+	ñS.stop();
+}
 function ñSceneResult(){
 	background('#808080');
+	textSize(96);
+	text(""+(isNaN(ñTemp=floor(100*
+		(ñJudjementCount[0]*100
+		+ñJudjementCount[1]*80
+		+ñJudjementCount[2]*60
+		+ñJudjementCount[3]*40
+		+ñJudjementCount[4]*20)/
+		(ñJudjementCount[0]
+		+ñJudjementCount[1]
+		+ñJudjementCount[2]
+		+ñJudjementCount[3]
+		+ñJudjementCount[4]
+		+ñJudjementCount[5]))/100)? 100 : ñTemp)
+
+	, width>>1, height*2/7);
 }

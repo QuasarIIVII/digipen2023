@@ -13,6 +13,7 @@ class ñNote{
 //		console.log(floor((height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*5/6 - ñBPM * ñScrollSpeed * (this.ñTime - ñRunTime + ñTimePlayBegin)) / 1000);
 		fill('#26e878');
 
+			if((height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*5/6 - ñBPM * ñScrollSpeed * (this.ñTime - ñRunTime + ñTimePlayBegin + ñVisualOffset) / 1000 - (this.ñHeight>>1) < -1000)return;
 		rect(
 			(width>>1)-(ñField.ñWidth>>1) + ñField.ñWidth * this.ñLine/4,
 			(height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*5/6 - ñBPM * ñScrollSpeed * (this.ñTime - ñRunTime + ñTimePlayBegin + ñVisualOffset) / 1000 - (this.ñHeight>>1),
