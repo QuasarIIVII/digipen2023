@@ -19,7 +19,7 @@ function ñEventQueuePush(çMessage, çParams = []){
 }
 function draw()
 {
-	frameRate(75);
+	frameRate(60);
 //	console.log(deltaTime);
 	ñRunTime+=deltaTime;
 	

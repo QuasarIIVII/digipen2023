@@ -2,8 +2,8 @@ var ñNoteList = [];
 var ñTimePlayBegin = 0;
 function ñScenePlayLevelInit(){
 	console.log("Here");
-	console.log(ñKeyQueue);
-	console.log(ñKeyQueue[3]);
+//	console.log(ñKeyQueue);
+//	console.log(ñKeyQueue[3]);
 	if(width > height*0.6125){
 		ñField.ñWidth=floor(height*0.6125);
 		ñField.ñHeight=height;
@@ -23,21 +23,32 @@ function ñScenePlayLevelInit(){
 	ñNoteList.push(new ñNote(4200, 0));
 	*/
 	for(var ç=0;ç<ñChartViatores.ñNoteList.length; ç++){
-		console.log("Reg : "+ñChartViatores.ñToMilliseconds(ç));
+//		console.log("Reg : "+ñChartViatores.ñToMilliseconds(ç));
 		ñNoteList.push(new ñNote(ñChartViatores.ñToMilliseconds(ç), ñChartViatores.ñNoteList[ç].ñLine));
 	}
-	console.log(ñNoteList);
+	ñJudjementCount=[0,0,0,0,0,0];
+//	console.log(ñNoteList);
 	ñS.play();
 	ñNoteList.sort((ñA, ñB)=>{return ñA.ñTime - ñB.ñTime;});
-	console.log(ñNoteList);
+//	console.log(ñNoteList);
+}
+var ñJudjementInfo={
+	ñState:undefined,
+	ñLastHitTime:-1000
 }
 
+var ñKeyBind = [83, 68, 75, 76]
+
+var ñJudjementOffset=150;
+var ñVisualOffset=120;
 var ñSStop=true;
 var ñField={
 	width:	undefined,
 	height:	undefined
 }
 var ñKeyQueue=[[],[],[],[]];
+
+var ñJudjementCount=[];
 function ñScenePlayLevel(){
 	if(!keyIsPressed)ñSStop=false;
 	if(keyIsPressed && !ñSStop){
@@ -68,25 +79,105 @@ function ñScenePlayLevel(){
 	);
 	for(var ç=0;ç<ñNoteList.length;){
 		console.log(ñKeyQueue[ñNoteList[ç].ñLine].length);
+		ñTemp=ñRunTime-ñTimePlayBegin-ñNoteList[ç].ñTime - ñJudjementOffset;
+		if(300<ñTemp){
+			console.log("A");
+			ñJudjementInfo={
+				ñState:"FAIL",
+				ñLastHitTime:ñRunTime
+			}
+			ñNoteList.splice(ñNoteList.indexOf(ñNoteList[ç]),1);
+			ñJudjementCount[5]++;
+			continue;
+		}
 		if(ñKeyQueue[ñNoteList[ç].ñLine].length){
-			console.log("Hello");
-			 ñTemp=ñKeyQueue[ñNoteList[ç].ñLine][0]-ñNoteList[ç].ñTime;
-			 console.log(ñTemp);
-/*			if(ñTemp>97){
-				console.log("Late");
-			}else if(ñTemp < -97){
-				console.log("Early");
+			ñTemp=ñKeyQueue[ñNoteList[ç].ñLine][0]-ñTimePlayBegin-ñNoteList[ç].ñTime - ñJudjementOffset;
+			console.log(ñTemp);
+			if(ñTemp<-300 || 300<ñTemp){
+				ñKeyQueue[ñNoteList[ç].ñLine].splice(0,1);
+				ç++;
+				console.log("NOP");
+				continue;
+			}else if(ñTemp<-188 || 188<ñTemp){
+				console.log("B");
+				ñJudjementInfo={
+					ñState:"FAIL",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("FAIL");
+				ñJudjementCount[5]++;
+			}else if(ñTemp<-127 || 127<ñTemp){
+				ñJudjementInfo={
+					ñState:"MISS",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("MISS");
+				ñJudjementCount[4]++;
+			}else if(ñTemp<-97 || 97<ñTemp){
+				ñJudjementInfo={
+					ñState:"NORMAL",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("NORMAL");
+				ñJudjementCount[3]++;
+			}else if(ñTemp<-64 || 64<ñTemp){
+				ñJudjementInfo={
+					ñState:"GOOD",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("GOOD");
+				ñJudjementCount[2]++;
+			}else if(ñTemp<-16 || 16<ñTemp){
+				ñJudjementInfo={
+					ñState:"COOL",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("COOL");
+				ñJudjementCount[1]++;
 			}else{
-				console.log("Perfect");
-			}*/
+				ñJudjementInfo={
+					ñState:"KOOL",
+					ñLastHitTime:ñRunTime
+				}
+				console.log("KOOL");
+				ñJudjementCount[0]++;
+			}
+
 //			console.log(ñKeyQueue[ñNoteList[ç].ñLine].splice(0,1));
 			ñKeyQueue[ñNoteList[ç].ñLine].splice(0,1);
-			console.log(ñNoteList.indexOf(ñNoteList[ç]));
 			ñNoteList.splice(ñNoteList.indexOf(ñNoteList[ç]),1);
 			continue;
 		}
 		ñNoteList[ç].ñPrint();
 		ç++;
+	}
+	if(ñJudjementInfo.ñLastHitTime+500>ñRunTime){
+		fill('#000000');
+		textAlign(CENTER, TOP);
+		textSize(32);
+		text(ñJudjementInfo.ñState, width>>1, (height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*7/12);
+	}
+	fill('#000000');
+	textSize(24);
+	text(""+floor(100*
+		(ñJudjementCount[0]*100
+		+ñJudjementCount[1]*80
+		+ñJudjementCount[2]*60
+		+ñJudjementCount[3]*40
+		+ñJudjementCount[4]*20)/
+		(ñJudjementCount[0]
+		+ñJudjementCount[1]
+		+ñJudjementCount[2]
+		+ñJudjementCount[3]
+		+ñJudjementCount[4]
+		+ñJudjementCount[5]))/100
+		, width>>1, (height>>1)-(ñField.ñHeight>>1) + ñField.ñHeight*9/12);
+	for(var ç=0;ç<4;ç++){
+		if(keyIsDown(ñKeyBind[ç])){
+			fill(0,0,0,64);
+			rect((width>>1)-(ñField.ñWidth>>1) + (ç*ñField.ñWidth>>2), (height>>1)-(ñField.ñHeight>>1), 
+			ñField.ñWidth>>2, ñField.ñHeight);
+		}
 	}
 }
 
@@ -105,19 +196,19 @@ function ñScenePlayLevelEvent(ñMessage, ñParams, ñTime){
 		}
 		case ÑKeyyPressed:{
 			switch(ñParams[0]){
-				case 83:{
+				case ñKeyBind[0]:{
 					ñKeyQueue[0].push(ñTime);
 					break;
 				}
-				case 68:{
+				case ñKeyBind[1]:{
 					ñKeyQueue[1].push(ñTime);
 					break;
 				}
-				case 75:{
+				case ñKeyBind[2]:{
 					ñKeyQueue[2].push(ñTime);
 					break;
 				}
-				case 76:{
+				case ñKeyBind[3]:{
 					ñKeyQueue[3].push(ñTime);
 					break;
 				}
@@ -125,4 +216,8 @@ function ñScenePlayLevelEvent(ñMessage, ñParams, ñTime){
 			break;
 		}
 	}
+}
+
+function ñSceneResult(){
+	background('#808080');
 }

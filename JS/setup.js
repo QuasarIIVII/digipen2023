@@ -20,6 +20,11 @@ function ñInitRunnerList(){
 			ñInitializer	: undefined,
 			ñEventHandler	: undefined,
 		},
+		{
+			ñRunner			: ñSceneResult,
+			ñInitializer	: undefined,
+			ñEventHandler	: undefined,
+		}
 	]
 }
 
